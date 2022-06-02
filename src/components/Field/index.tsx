@@ -1,8 +1,12 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { params } from '../../params';
+import * as S from './styles';
 
 export default function Field(){
-  // const styledField = [styles.field];
-  // if(styledField.length === 1) styledField.push(styles.regular)
+  console.warn(params);
+
+  return(
+    <S.Field></S.Field>
+  )
 }
