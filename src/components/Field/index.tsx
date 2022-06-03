@@ -19,7 +19,7 @@ export default function Field({ mined, opened, nearMines = 0 }: FieldProps){
     if(nearMines >= 6) color = '#F221A9'
   }
 
-  return(
+  return (
     <S.Field opened={opened}>
       {!mined && opened && nearMines > 0 
         ? <S.Label color={color}>{nearMines}</S.Label>
