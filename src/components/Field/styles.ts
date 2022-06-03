@@ -15,17 +15,22 @@ const wrappersModifers = {
     border-top-color: #CCC;
     border-right-color: #333;
     border-bottom-color: #333;
+  `,
+  exploded: () => css`
+    background-color: red;
+    border-color: red;
   `
 }
 
-export const Field = styled.View<Pick<FieldProps, 'opened'>>`
-  ${({ opened }) => css`
+export const Field = styled.View<Pick<FieldProps, 'opened' | 'exploded'>>`
+  ${({ opened, exploded }) => css`
     height: ${params.blockSize};
     width: ${params.blockSize};
     border-width: ${params.borderSize};
     ${!opened && wrappersModifers.regular()};
     
-    ${wrappersModifers.opened()};
+    ${exploded && wrappersModifers.exploded()};
+    ${opened && wrappersModifers.exploded()};
   `}
 `
 

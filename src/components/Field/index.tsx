@@ -1,15 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { params } from '../../params';
+
+import { params } from '../../params';import { View, StyleSheet, Text } from 'react-native';
 import * as S from './styles';
+import Mine from '../Mine';
 
 export type FieldProps = {
-  mined?: string
+  mined?: boolean;
   opened?: boolean
   nearMines?:number
+  exploded?: boolean
 }
 
-export default function Field({ mined, opened, nearMines = 0 }: FieldProps){
+export default function Field({ mined, opened, nearMines = 0, exploded }: FieldProps){
   let color = '';
   
   if(nearMines > 0){
@@ -25,6 +27,7 @@ export default function Field({ mined, opened, nearMines = 0 }: FieldProps){
         ? <S.Label color={color}>{nearMines}</S.Label>
         : false
       }
+      {mined && opened ? <Mine /> : false}
     </S.Field>
   )
 }

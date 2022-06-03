@@ -12,6 +12,8 @@ const App = () => {
      <Field opened nearMines={1} />
      <Field opened nearMines={3} />
      <Field />
+     <Field mined />
+     <Field mined opened />
      <Text>Iniciando o Mines</Text>
      <Text>Tamanha Grade: {params.getColumnsAmount()}x{params.getRowsAmount()}</Text>
     </View>
