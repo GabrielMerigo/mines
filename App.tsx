@@ -10,12 +10,13 @@ const App = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
      <Field opened nearMines={1} />
-     <Field opened nearMines={3} />
+     <Field opened nearMines={2} />
+     <Field opened nearMines={6} />
+     <Field opened nearMines={10} />
      <Field />
+     <Field opened mined exploded />
+     <Field opened mined />
      <Field mined />
-     <Field mined opened />
-     <Text>Iniciando o Mines</Text>
-     <Text>Tamanha Grade: {params.getColumnsAmount()}x{params.getRowsAmount()}</Text>
     </View>
   );
 };

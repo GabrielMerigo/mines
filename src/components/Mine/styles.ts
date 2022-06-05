@@ -1,10 +1,22 @@
 import styled, { css } from 'styled-components/native';
 
-const wrappersModifers = {
-  isRotate: (deg: string) => css`
-    transform: rotate(${deg});
-  `
+type LineProps = {
+  isRotate45?: boolean
+  isRotate90?: boolean
+  isRotate145?: boolean
 }
+
+const wrappersModifers = {
+  isRotate45: () => css`
+    transform: rotate(45deg);
+  `,
+  isRotate90: () => css`
+    transform: rotate(90deg);
+  `,
+  isRotate145: () => css`
+    transform: rotate(145deg);
+  `
+};
 
 export const Container = styled.View`
   ${() => css`
@@ -24,14 +36,16 @@ export const CoreMine = styled.View`
   `}
 `
 
-export const Line = styled.View<{ valueRotate?: string }>`
-  ${({ valueRotate }) => css`
+export const Line = styled.View<LineProps>`
+  ${({ isRotate45, isRotate90, isRotate145 }) => css`
     position: absolute;
     height: 3;
     width: 20;
-    border-radius: 3,
+    border-radius: 3;
     background-color: black;
 
-    ${wrappersModifers.isRotate(valueRotate!)}
+    ${isRotate45 && wrappersModifers.isRotate45()}
+    ${isRotate90 && wrappersModifers.isRotate90()}
+    ${isRotate145 && wrappersModifers.isRotate145()}
   `}
 `

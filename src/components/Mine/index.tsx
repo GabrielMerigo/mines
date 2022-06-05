@@ -9,9 +9,9 @@ export default function Mine(){
     <S.Container>
       <S.CoreMine></S.CoreMine>
       <S.Line></S.Line>
-      <S.Line valueRotate="45deg"></S.Line>
-      <S.Line valueRotate="90deg"></S.Line>
-      <S.Line valueRotate="135deg"></S.Line>
+      <S.Line isRotate45></S.Line>
+      <S.Line isRotate90></S.Line>
+      <S.Line isRotate145></S.Line>
     </S.Container>
   )
 }
