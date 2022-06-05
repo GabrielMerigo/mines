@@ -4,7 +4,6 @@ import {
   Text,
   View
 } from 'react-native';
-import { params } from './src/params';
 
 const App = () => {
   return (
@@ -13,10 +12,11 @@ const App = () => {
      <Field opened nearMines={2} />
      <Field opened nearMines={6} />
      <Field opened nearMines={10} />
-     <Field />
      <Field opened mined exploded />
      <Field opened mined />
      <Field mined />
+     <Field flagged />
+     <Field flagged opened />
     </View>
   );
 };

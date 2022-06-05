@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components/native';
 import { FieldProps } from '.';
 import { params } from '../../params';
 
+type WrapperProps = Pick<FieldProps, 'opened' | 'exploded' | 'flagged'>
+
 const wrappersModifers = {
   opened: () => css`
     background: #777;
@@ -22,15 +24,15 @@ const wrappersModifers = {
   `
 }
 
-export const Field = styled.View<Pick<FieldProps, 'opened' | 'exploded'>>`
-  ${({ opened, exploded }) => css`
+export const Wrapper = styled.View<WrapperProps>`
+  ${({ opened, exploded, flagged }) => css`
     height: ${params.blockSize};
     width: ${params.blockSize};
 
     border-width: ${params.borderSize};
     ${opened && wrappersModifers.opened()};
     ${exploded && wrappersModifers.exploded()};
-    ${!opened && wrappersModifers.regular()};
+    ${!opened && !exploded && wrappersModifers.regular()};
   `}
 `
 
