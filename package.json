@@ -43,7 +43,9 @@
   },
   "jest": {
     "preset": "react-native",
-    "setupFilesAfterEnv": ["<rootDir>/.jest/setup.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/.jest/setup.js"
+    ],
     "moduleDirectories": [
       "node_modules",
       "src"

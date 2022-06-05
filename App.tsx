@@ -4,11 +4,14 @@ import {
   Text,
   View
 } from 'react-native';
+import Flag from './src/components/Flag';
 
 const App = () => {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-     <Field opened nearMines={1} />
+    <Flag />
+    <Flag bigger />
+     {/* <Field opened nearMines={1} />
      <Field opened nearMines={2} />
      <Field opened nearMines={6} />
      <Field opened nearMines={10} />
@@ -16,7 +19,7 @@ const App = () => {
      <Field opened mined />
      <Field mined />
      <Field flagged />
-     <Field flagged opened />
+     <Field flagged opened /> */}
     </View>
   );
 };
