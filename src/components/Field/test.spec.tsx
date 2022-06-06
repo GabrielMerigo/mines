@@ -1,9 +1,9 @@
-// import { toBeEmpty, toHaveTextContent } from '@testing-library/jest-native';
+import renderer from 'react-test-renderer';
+import Field from './index'
 
 
-// import Field from './index'
 
-// it('should have background: #777 and border-color: #555 when be opened', () => {
-//   // const { getByText } = render(<Field nearMines={1} />)
-//   expect.extend({ toBeEmpty, toHaveTextContent });
-// });
+it('should have background: #777 and border-color: #555 when be opened', () => {
+  expect(renderer.create(<Field />))
+});
+
