@@ -24,8 +24,6 @@ const App = () => {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Flag />
-      <Flag bigger />
       <View style={styles.board}>
         <MineField board={board}/>
       </View>
@@ -42,7 +40,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#AAA'
   }
-
 })
 
 export default App;
