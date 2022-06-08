@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './styles';
 import Mine from '../Mine';
 import Flag from '../Flag';
+import { TouchableWithoutFeedback } from 'react-native';
 
 export type FieldProps = {
   mined?: boolean;
@@ -9,6 +10,7 @@ export type FieldProps = {
   nearMines?: number
   exploded?: boolean
   flagged?: boolean
+  onOpen: () => void
 }
 
 export default function Field({ 
@@ -16,7 +18,8 @@ export default function Field({
   opened, 
   nearMines = 0, 
   exploded, 
-  flagged 
+  flagged,
+  onOpen
 }: FieldProps){
   let color = '';
   
@@ -28,13 +31,15 @@ export default function Field({
   }
 
   return (
-    <S.Wrapper opened={opened} exploded={exploded} flagged={flagged}>
-      {!mined && opened && nearMines > 0 
-        ? <S.Label color={color}>{nearMines}</S.Label>
-        : false
-      }
-      {mined && opened ? <Mine /> : false}
-      {flagged && !opened ? <Flag /> : false}
-    </S.Wrapper>
+    <TouchableWithoutFeedback>
+      <S.Wrapper opened={opened} exploded={exploded} flagged={flagged}>
+        {!mined && opened && nearMines > 0 
+          ? <S.Label color={color}>{nearMines}</S.Label>
+          : false
+        }
+        {mined && opened ? <Mine /> : false}
+        {flagged && !opened ? <Flag /> : false}
+      </S.Wrapper>
+    </TouchableWithoutFeedback>
   )
 }

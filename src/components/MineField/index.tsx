@@ -1,20 +1,21 @@
 import React from "react";
-import {  View } from "react-native"  ;
+import { View } from "react-native"  ;
 import Field from "../Field";
 import { Board } from "../functions";
 import * as S from './styles';
 
 type MineFieldProps = {
-  board: Board[][]
+  board: Board[][],
+  onOpenField?: (iR: number, iC: number) => void;
 }
 
-export default function MineField({ board }: MineFieldProps){
-  const rows = board.map((row, i) => {
-    const columns = row.map((field, i) => {
-      return (<Field {...field} key={i} />)
+export default function MineField({ board, onOpenField }: MineFieldProps){
+  const rows = board.map((row, iR) => {
+    const columns = row.map((field, iC) => {
+      return (<Field {...field} key={iC} onOpen={() => onOpenField!(iR, iC) } />)
     })
 
-    return <View key={i}>{columns}</View>
+    return <View key={iR}>{columns}</View>
   })
   return <S.Container>{rows}</S.Container>
 }

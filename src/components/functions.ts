@@ -5,7 +5,7 @@ export type Board = {
   flagged: boolean;
   mined: boolean;
   exploded?: boolean;
-  nearMines?: number
+  nearMines?: number,
 }
 
 const createBoard = (rows: number, columns: number) => {
@@ -67,6 +67,7 @@ const getNeighbors = (board: Board[][], row: number, column: number) => {
       }
     })
   })
+
   return neighbors;
 }
 
@@ -95,7 +96,7 @@ const fields = (boards: any) => [].concat(...boards);
 const hadExplosion = (board: any) => fields(board)
   .filter((field: any) => field.exploded).length > 0
 const pendding = (field: Board) => (field.mined && !field.flagged) || (!field.mined && !field.opened)
-const wonGame = (board: Board[]) => fields(board).filter(pendding).length === 0;
+const wonGame = (board: Board[][]) => fields(board).filter(pendding).length === 0;
 const showMines = (board: any) => fields(board)
   .filter((field: Board) => field.mined)
   .forEach((field: Board) => field.opened = true)
