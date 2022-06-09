@@ -12,18 +12,25 @@ import {
   openField,
   hadExplosion,
   wonGame,
-  showMines
-} from './src/components/functions'
+  showMines,
+  Board
+} from './src/components/functions';
+
+type BoardProps = {
+  board: Board[][],
+  lost: boolean,
+  won: boolean,
+}
 
 const App = () => {
   const cols = params.getColumnsAmount();
   const rows = params.getRowsAmount();
 
-  const [{ board }, setBoard] = useState({
-    board: createMinedBoard(rows, cols, minesAmount()),
-    won: false,
-    lost: false
-  });
+  let board: BoardProps = {
+    board: [],
+    lost: false,
+    won: false
+  };
 
   function minesAmount(){
     const cols = params.getColumnsAmount();
@@ -32,7 +39,7 @@ const App = () => {
   }
 
   function onOpenField(row: number, column: number){
-    const boardClone = cloneBoard(board);
+    const boardClone = cloneBoard(createMinedBoard(rows, cols, minesAmount()));
     openField(boardClone, row, column);
     const lost = hadExplosion(boardClone);
     const won = wonGame(boardClone)
@@ -46,17 +53,17 @@ const App = () => {
       Alert.alert('Congratulations', 'You won!!')
     }
 
-    setBoard({
+    return board = {
       board: boardClone,
       lost,
       won
-    })
+    };
   }
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <View style={styles.board}>
-        <MineField onOpenField={onOpenField} board={board}/>
+        <MineField onOpenField={onOpenField} board={board.board}/>
       </View>
     </View>
   );

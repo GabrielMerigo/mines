@@ -29,9 +29,8 @@ const spreadMines = (board: Board[][], minesAmount: number) => {
 
   while (minesPlanted < minesAmount){
     const rowSel = parseInt(String(Math.random() * rows), 10);
-    const columnSel = parseInt(String(Math.random() * rows), 10)
+    const columnSel = parseInt(String(Math.random() * columns), 10)
 
-    console.warn(board[rowSel][columnSel].mined)
     if(!board[rowSel][columnSel].mined){
       board[rowSel][columnSel].mined = true
       minesPlanted++
@@ -80,14 +79,14 @@ const safeNeighborhood = (board: Board[][], row: number, column: number) => {
 const openField = (board: Board[][], row: number, column: number) => {
   const field = board[row][column];
 
-  if(!field.opened){
-    field.opened = true
+  if(!field?.opened){
+    field.opened = true;
     if(field.mined){
       field.exploded = true;
     }else if(safeNeighborhood(board, row, column)){
       getNeighbors(board, row, column)
         .forEach((n: any) => openField(board, n.row, n.columns));
-    }else {
+    }else{
       const neighbors = getNeighbors(board, row, column);
       field.nearMines = neighbors.filter((n: any) => n.mined).length;
     }
@@ -95,13 +94,12 @@ const openField = (board: Board[][], row: number, column: number) => {
 }
 
 const fields = (boards: any) => [].concat(...boards);
-const hadExplosion = (board: any) => fields(board)
-  .filter((field: any) => field.exploded).length > 0
-const pendding = (field: Board) => (field.mined && !field.flagged) || (!field.mined && !field.opened)
+const hadExplosion = (board: any) => fields(board).filter((field: any) => field.exploded).length > 0;
+const pendding = (field: Board) => (field.mined && !field.flagged) || (!field.mined && !field.opened);
 const wonGame = (board: Board[][]) => fields(board).filter(pendding).length === 0;
 const showMines = (board: any) => fields(board)
   .filter((field: Board) => field.mined)
-  .forEach((field: Board) => field.opened = true)
+  .forEach((field: Board) => field.opened = true);
 
 export { 
   createMinedBoard,
