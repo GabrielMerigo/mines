@@ -28,9 +28,10 @@ const spreadMines = (board: Board[][], minesAmount: number) => {
   let minesPlanted = 0;
 
   while (minesPlanted < minesAmount){
-    const rowSel = Math.floor(Math.random() * rows);
-    const columnSel = Math.floor(Math.random() * columns);
+    const rowSel = parseInt(String(Math.random() * rows), 10);
+    const columnSel = parseInt(String(Math.random() * rows), 10)
 
+    console.warn(board[rowSel][columnSel].mined)
     if(!board[rowSel][columnSel].mined){
       board[rowSel][columnSel].mined = true
       minesPlanted++
@@ -55,7 +56,7 @@ const cloneBoard = (board: Board[][]) => {
 const getNeighbors = (board: Board[][], row: number, column: number) => {
   const neighbors: any = [];
   const rows = [row - 1, row, row + 1];
-  const columns = [column - 1, column];
+  const columns = [column - 1, column, column + 1];
   rows.forEach(r => {
     columns.forEach(c => {
       const diferent = r !== row || c !== column;
@@ -78,6 +79,7 @@ const safeNeighborhood = (board: Board[][], row: number, column: number) => {
 
 const openField = (board: Board[][], row: number, column: number) => {
   const field = board[row][column];
+
   if(!field.opened){
     field.opened = true
     if(field.mined){

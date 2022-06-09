@@ -31,7 +31,7 @@ export default function Field({
   }
 
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={onOpen}>
       <S.Wrapper opened={opened} exploded={exploded} flagged={flagged}>
         {!mined && opened && nearMines > 0 
           ? <S.Label color={color}>{nearMines}</S.Label>
